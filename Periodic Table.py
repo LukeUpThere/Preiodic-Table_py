@@ -85,18 +85,11 @@ def get_element():
         
         # Check if the given row/column space is occupied
         for symbol, data in elements.items():
-            for key, value in data.items():
-                if (key, value) == ('row', row):
-                    same_row = True
-                else:
-                    same_row = False
-                if (key, value) == ('column', column):
-                    same_column = True
-                else:
-                    same_column = False
+            for k, v in data.items():
+                same_row = True if (k, v) == ('row', row) else False
+                same_column = True if (k, v) == ('column', column) else False
                 space_occupied = True if same_column and same_row else False
-                if space_occupied:
-                    element_in_space = symbol
+                element_in_space = symbol if space_occupied else None
         
         # Alert user to space_occupied and element_exists conflicts
         if element_exists and space_occupied:
